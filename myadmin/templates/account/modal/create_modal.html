@@ -1,0 +1,64 @@
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-header text-center"> <h4 class="center-align">Шинээр хэрэглэгч бүртгэх хэсэг</h4> </div>
+  <div class="modal-content">
+    <div class="row">
+        <form action="{% url 'createAccount' %}" onsubmit="checkPwd" method="post" id="createUser">
+          {% csrf_token %}
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Овог" id="first_name" name="first_name" type="text" class="validate">
+              <label for="first_name">Овог</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="last_name" name="last_name" type="text" class="validate">
+              <label for="last_name">Нэр</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="Нэвтрэх нэр" id="usename" name="username" type="text" class="validate">
+              <label for="username">Нэвтрэх нэр</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="email" name="email" type="email" class="validate">
+              <label for="email">Емайл хаяг</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="password" name="password" type="password" class="validate">
+              <label for="password">Нууц үг</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="password1" name="password1" type="password" class="validate">
+              <label for="password1">Нууц үг давтан оруулна уу</label>
+            </div>
+          </div>
+          <button class="btn accent-3" type="submit"> Бүртгэх</button>
+          <button class="btn lighten-4 modal-close" type="reset"> Болих</button>
+        </form>
+      </div>
+  </div>
+  <div class="modal-footer">
+    <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+  </div>
+</div>
+
+<script>
+
+// function checkPwd(){
+//   console.log('end');
+// }
+
+$("#createUser").submit(function(){
+    var pwd=$("#password").val();
+    var pwd1=$("#password1").val();
+    if(pwd != pwd1)
+    {
+      alert("Дахин оруулсан нууц үг өмнөх нууц үгтэй тохирохгүй байна")
+      return false;
+    }
+})
+
+</script>

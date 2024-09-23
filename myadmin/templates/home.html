@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>The Materialize NavBar Example</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- <link rel = "stylesheet"  href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">   -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    {%block header%}
+
+    {%endblock%}
+    <script>
+        //  $( document ).ready(function()) {  
+        //     $(".dropdown-button").dropdown();
+        //  });  
+    </script>
+</head>
+
+<body>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+    <!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js" />   -->
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="https://cdn.datatables.net/2.1.6/js/dataTables.min.js" />
+
+    // <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    </script>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo" style="margin-left: 15px;">Өмнө говь / {{user}} /</a>
+
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{% url 'dashboard' %}"><i class="material-icons left">dashboard</i>Хяналтын самбар</a></li>
+                <li><a href="sass.html"><i class="material-icons left">people_outline</i>Хэрэглэгчийн удирдлага</a></li>
+
+                <li><a href="{% url 'admin_logout' %}"><i class="material-icons right">exit_to_app</i>Системээс
+                        гарах</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        {%block content%}
+
+        {%endblock%}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.modal');
+          var instances = M.Modal.init(elems, {});
+        });
+      </script>
+</body>
+
+</html>

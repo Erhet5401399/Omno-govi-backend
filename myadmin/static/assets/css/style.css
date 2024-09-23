@@ -1,0 +1,380 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+}
+
+#dashboard_map {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+
+.ol-control {
+  background-color: #ffffff00;
+}
+
+.ol-zoom.ol-unselectable.ol-control {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  position: absolute;
+  top: 20px;
+  right: 55px !important;
+  left: unset;
+}
+.ol-rotate-reset {
+  display: none;
+}
+
+.ol-full-screen.ol-unselectable.ol-control {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* CSS */
+.ol-zoom-in,
+.ol-zoom-out,
+.ol-full-screen-false,
+.ol-full-screen-true {
+  align-items: center;
+  appearance: none;
+  background-image: radial-gradient(
+    100% 100% at 100% 0,
+    #5adaff 0,
+    #5468ff 100%
+  );
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgba(58, 65, 111, 0.5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff !important;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono", monospace;
+  height: 30px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding: 0px 10px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: 18px;
+}
+
+.ol-zoom-in:focus,
+.ol-zoom-out:focus,
+.ol-full-screen-false:focus,
+.ol-full-screen-true:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.ol-zoom-in:hover,
+.ol-zoom-out:hover,
+.ol-full-screen-false:hover,
+.ol-full-screen-true:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.ol-zoom-in:active,
+.ol-zoom-out:active,
+.ol-full-screen-false:active,
+.ol-full-screen-true:active {
+  box-shadow: #3c4fe0 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.ol-attribution.ol-unselectable.ol-control.ol-uncollapsible {
+  display: none;
+}
+
+.sidebar {
+  position: absolute;
+  width: 200px;
+  border-radius: 1rem;
+  left: 1rem;
+  top: 1rem;
+  /* bottom: 1rem; */
+  background: #8aaae5;
+  display: flex;
+  flex-direction: column;
+  height: 580px;
+  top: calc((100% - 580px) / 2);
+  /* background: radial-gradient(circle, #434343 0%, rgba(3, 2, 53, 1) 29%, rgba(9, 9, 121, 1) 88%, rgba(0, 212, 255, 1) 100%); */
+  background: radial-gradient(
+    circle,
+    rgba(202, 220, 252, 1) 0%,
+    rgba(138, 182, 249, 1) 0%,
+    rgba(0, 36, 107, 1) 100%
+  );
+}
+.btn_toggle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  top: 5px;
+  right: 0;
+  transform: translateX(50%);
+  border-radius: 50%;
+  background: #00246b;
+  border: 3px solid #fff;
+}
+.logo {
+  text-align: center;
+  padding: 20px 0 10px 0;
+}
+
+.logo > img {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px 20px 5px;
+}
+.menus {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: unset;
+}
+.top_menu {
+  width: 100%;
+}
+.bottom_menu {
+  width: 100%;
+}
+
+ul.menu {
+  list-style: none;
+  padding: 0;
+}
+ul.menu li a {
+  padding: 0.8rem 0 0.8rem 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  width: calc(100% - 1.6rem);
+}
+ul.menu li a:hover {
+  background: #b2beb5;
+}
+ul.menu li img {
+  width: 28px;
+}
+
+.menu_active {
+  background: #b2beb5;
+}
+
+.sidebar ul.menu li a span {
+  display: inline-block;
+  transform-origin: 0 0;
+  margin-left: 12px;
+}
+
+.sidebar.isShrinked .btn_toggle svg {
+  transform: rotate(180deg);
+}
+
+.border_bottom {
+  border-bottom: 3px solid #fff;
+}
+.border_top {
+  border-top: 3px solid #fff;
+}
+
+#additional {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    rgba(202, 220, 252, 1) 0%,
+    rgba(138, 182, 249, 1) 0%,
+    rgba(0, 36, 107, 1) 100%
+  );
+  display: block;
+  border-radius: 8px;
+  left: 250px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px;
+  overflow-y: scroll;
+}
+#database_register_additional,
+#another_service_additional,
+#mining_land_additional {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 300px;
+  height: auto;
+  background: radial-gradient(
+    circle,
+    rgba(202, 220, 252, 1) 0%,
+    rgba(138, 182, 249, 1) 0%,
+    rgba(0, 36, 107, 1) 100%
+  );
+  display: block;
+  border-radius: 8px;
+  left: 250px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px;
+}
+
+#zorchil_additional {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 400px;
+  height: auto;
+  background: radial-gradient(
+    circle,
+    rgba(202, 220, 252, 1) 0%,
+    rgba(138, 182, 249, 1) 0%,
+    rgba(0, 36, 107, 1) 100%
+  );
+  display: block;
+  border-radius: 8px;
+  left: 250px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px;
+}
+
+#payCalc_info_additional {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(202, 220, 252, 1) 0%,
+    rgba(138, 182, 249, 1) 0%,
+    rgba(0, 36, 107, 1) 100%
+  );
+  display: block;
+  border-radius: 8px;
+  right: 20px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px;
+  top: calc((100% - 750px) / 2);
+}
+
+#zorchil_additional .form-check {
+  align-items: baseline !important;
+}
+
+#additional.show,
+#another_service_additional.show,
+#database_register_additional.show,
+#zorchil_additional.show,
+#mining_land_additional.show,
+#payCalc_info_additional.show {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.form-check {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-check label:hover {
+  cursor: pointer;
+}
+
+.mapTypeSelection {
+  position: absolute;
+  z-index: 100;
+  right: 40px;
+  bottom: 40px;
+  display: flex;
+  gap: 10px;
+  width: 250px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 8px;
+  justify-content: center;
+}
+.mapTypeSelection img {
+  width: 100px;
+  border: 5px solid white;
+  border-radius: 14px;
+}
+
+table th {
+  text-align: center;
+}
+table,
+td,
+th {
+  border: 1px solid #ddd;
+}
+
+table {
+  /* border-collapse: collapse; */
+  width: 100%;
+}
+
+th,
+td {
+  padding: 5px;
+}
+
+.customHeader {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+/* radial-gradient(circle, rgba(3,24,38,1) 0%, rgba(3,2,53,1) 29%, rgba(9,9,121,1) 88%, rgba(0,212,255,1) 100%) */
+
+
+.payCal_scroll{
+  overflow-y: scroll;
+  height: 530px;
+}

@@ -1,0 +1,23 @@
+<table id="table">
+    <thead style="position: sticky; top: 0px; background-color: #23498f;">
+    <tr style="border-bottom: 4px double #000; border-top: 4px double #000; ">
+        <th>Сумын нэр</th>
+        <th>Газар ашиглалтын зориулалт</th>
+        <th>тоо</th>
+        <th>Талбайн хэмжээ /га/</th>
+        <th>Газрын төлбөр, татварын дүн  /сая.төг/</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for dt in data%}
+    <tr>
+        <td>{{dt.name}}</td>
+        <td>{{dt.code}}</td>
+        <td>{{dt.count}}</td>
+        <td>{{dt.area}}</td>
+        <td>{{dt.payment}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
