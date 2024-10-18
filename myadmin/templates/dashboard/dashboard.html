@@ -7,6 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Уул уурхай</title>
+  <link rel="icon" href="{% static 'image/icon.png'%}" type="image/png">
   <!-- <link rel="stylesheet" href="node_modules/ol/ol.css"> -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.1.0/ol.css">
 
@@ -46,15 +47,15 @@
               <img src="{% static 'image/svg/ashigt_maltmal.svg" alt="Ашигт малтмал">
               <span>Ашигт малтмал</span>
             </a> -->
-            <a href="#" title="Ашигт малтмал" class="another_service">
+            <a href="#" title="Кадастрын мэдээлэл" class="another_service">
               <img src="{% static 'image/svg/ashigt_maltmal.svg'%}" alt="Ашигт малтмал">
-              <span>Өмнө говийн мэдээлэл</span>
+              <span>Кадастрын мэдээлэл</span>
             </a>
           </li>
           <li class="border_bottom">
-            <a href="#" class="special_area" title="Тусгай хэрэгцээт газар">
+            <a href="#" class="special_area" title="Тусгай хамгаалалттай газар нутаг">
               <img src="{% static 'image/svg/specialArea.svg'%}" alt="">
-              <span>Тусгай хэрэгцээт газар</span>
+              <span>Тусгай хамгаалалттай газар нутаг</span>
             </a>
           </li>
           <!-- <li class="border_bottom">
@@ -65,9 +66,9 @@
           </li> -->
 
           <li class="border_bottom">
-            <a href="#" class="5_10_color_toggle" title=">5 - 10">
+            <a href="#" class="satellite_image_toggle" title="Сансрын зураг">
               <img src="{% static 'image/svg/zoom.svg'%}" alt="5 - 10">
-              <span>5 - 10</span>
+              <span>Сансрын зураг</span>
             </a>
           </li>
 
@@ -79,16 +80,16 @@
           </li> -->
 
           <li class="border_bottom">
-            <a href="#" class="mining_land_toggle" title="Уурхайн газар ашиглалт">
+            <a href="#" class="mining_land_toggle" title="Уурхайн газар ашиглалт /Тооллогын үр дүн/">
               <img src="{% static 'image/svg/area_use.svg'%}" alt="">
-              <span>Уурхайн газар ашиглалт</span>
+              <span>Уурхайн газар ашиглалт </span>
             </a>
           </li>
 
           <li class="border_bottom">
-            <a href="#" class="zorchil_toggle" title="Зөрчил">
+            <a href="#" class="zorchil_toggle" title="Уурхайн газар ашиглалтын зөрчлийн ангилал">
               <img src="{% static 'image/svg/zorchil.svg'%}" alt="">
-              <span>Зөрчил</span>
+              <span>Уурхайн газар ашиглалтын зөрчлийн ангилал</span>
             </a>
           </li>
 
@@ -100,9 +101,9 @@
           </li>
 
           <li>
-            <a href="#" class="pay_calc_toggle" title="Төлбөр">
+            <a href="#" class="pay_calc_toggle" title="Газрын төлбөрийн тооцоолол">
               <img src="{% static 'image/svg/tolbor.svg'%}" alt="">
-              <span>Төлбөр</span>
+              <span>Газрын төлбөрийн тооцоолол</span>
             </a>
           </li>
 
@@ -123,10 +124,38 @@
     </div>
   </div>
 
+  
+
+  <div id="satellite_image_additional" style="display: none;">
+    <div class="customHeader " style="font-size: 18px;">      
+      <p> <strong> Сансарын зураг </strong> </p>
+    </div>
+    <hr class="customBottomBorder" />
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="satellite-1">
+      <label class="form-check-label satellite_image_30" for="satellite-1">
+        10 - 30М нарийвчлал
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="satellite-2">
+      <label class="form-check-label satellite_image_10" id="2602" for="satellite-2">
+        5 - 10М нарийвчлал
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="satellite-3">
+      <label class="form-check-label satellite_image_0_5"  for="satellite-3">
+        0.5М нарийвчлал
+      </label>
+    </div>
+  </div>
+
   <div id="database_register_additional" style="display: none;">
     <div class="customHeader " style="font-size: 18px;">      
-      <p> <strong>Бэлчээрийн төлөв байдлын ангиллын хүснэгт </strong> </p>
+      <p> <strong>Газар ашиглалтын төрөл </strong> </p>
     </div>
+    <hr class="customBottomBorder" />
     <div class="form-check">
       <input class="form-check-input" type="checkbox" name="dbReg" id="dbReg-1">
       <label class="form-check-label dbReg_filter" id="2601" for="dbReg-1">
@@ -155,26 +184,34 @@
 
   <div id="another_service_additional" style="display: none;">
     <div class="customHeader " style="font-size: 18px;">      
-      <p> <strong>Өмнө говийн мэдээлэл </strong> </p>
+      <p> <strong>Кадастрын мэдээлэл </strong> </p>
     </div>
+    <hr class="customBottomBorder"/>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" name="mining_area" id="anotherService-1">
       <label class="form-check-label mining_area" id="2601" for="anotherService-1">
-        Ашигт малтмал
+        Ашигт малтмал ашиглалтын тусгай зөвшөөрөлтэй талбай
       </label>
     </div>
     <div class="form-check">
       <input class="form-check-input" type="checkbox" name="anotherService" id="anotherService-2">
       <label class="form-check-label cadastre_area" id="2602" for="anotherService-2">
-        нэгж талбар
+        Кадастрын нэгж талбар
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="anotherService" id="anotherService-3">
+      <label class="form-check-label building_area" for="anotherService-3">
+        Барилга
       </label>
     </div>
   </div>
 
   <div id="zorchil_additional" style="display: none;">
     <div class="customHeader" style="font-size: 18px;">      
-      <p> <strong> Зөрчил</strong> </p>
+      <p> <strong> Уурхайн газар ашиглалтын зөрчлийн ангилал</strong> </p>
     </div>
+    <hr class="customBottomBorder" />
     <div class="form-check">
       <input class="form-check-input" type="checkbox" name="zorchil" id="zorchil-1">
       <label class="form-check-label zorchil_filter" id="1" for="zorchil-1">
@@ -210,8 +247,9 @@
 
   <div id="mining_land_additional" style="display: none;">
     <div class="customHeader" style="font-size: 18px;">      
-      <p> <strong> Уурхайн газар ашиглалт</strong> </p>
+      <p> <strong> Уурхайн газар ашиглалт /Тооллогын үр дүн/</strong> </p>
     </div>
+    <hr class="customBottomBorder" />
     <div class="form-check">
       <input class="form-check-input" type="checkbox" name="m_land" id="m_land-1">
       <label class="form-check-label m_land_filter" id="2601" for="m_land-1">
@@ -242,6 +280,7 @@
     <div class="customHeader" style="font-size: 18px;">      
       <p> <strong> Сум</strong> </p>
     </div>
+    <hr class="customBottomBorder" />
     <div class="form-check">
       <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault-0" value="0">
       <label class="form-check-label au2-filter" id="0" for="flexRadioDefault-0">
@@ -252,12 +291,16 @@
     </div>
   </div>
 
+  <div id="database_register_info_additional" style="display: none;">
+    
+  </div>
 
-  <div id="payCalc_info_additional">
+
+  <!-- Dymanic утга гаргаж ирэх -->
+  <!-- <div id="payCalc_info_additional">
     <div class="customHeader">      
-      <p> <strong>Бэлчээрийн төлөв байдлын ангиллын хүснэгт </strong> </p>
+      <p> <strong>Газрын төлбөрийн тооцоолол </strong> </p>
     </div>
-
     <div class="payCal_scroll">
       <table id="table">
         <thead style="position: sticky; top: 0px; background-color: #23498f;">
@@ -284,8 +327,1058 @@
     </table>
     </div>
 
+  </div> -->
+
+  <!-- Статистик утга гаргаж ирэх -->
+  <div id="new_payCalc_info_additional">
+    <div class="payCal_scroll">
+      <table id="table">
+        <thead style="position: sticky; top: 0px; background-color: #23498f;">
+          <tr style="border-bottom: 4px double #000; border-top: 4px double #000; ">
+            <th style="width: 26px;">
+              Д/д
+            </th>
+            <th>Сумын нэр</th>
+            <th>Газар ашиглалтын зориулалт</th>
+            <th>Тоо</th>
+            <th>Талбайн хэмжээ /га/</th>
+            <th>Газрын төлбөр, татварын дүн  /мян.төг/</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td rowspan="4"> 1 </td>
+            <td rowspan="3" > Баяндалай </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 1 </td>
+            <td> 0.0123 </td>
+            <td> 5.2 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 1 </td>
+            <td> 0.0617 </td>
+            <td> 9.9 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 5 </td>
+            <td> 3485.1636 </td>
+            <td> 167287.9 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 7 </td>
+            <td> 3485.2376 </td>
+            <td> 167302.9 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 2 </td>
+            <td rowspan="4" > Баян-Овоо </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 5 </td>
+            <td> 89.5547 </td>
+            <td> 37613 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 4 </td>
+            <td> 20.5157 </td>
+            <td> 36.5 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 7 </td>
+            <td> 19.7546 </td>
+            <td> 3160.7 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 8 </td>
+            <td> 73219.9163 </td>
+            <td> 3514556 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 24 </td>
+            <td> 73349.7413 </td>
+            <td> 3555366.2 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 3 </td>
+            <td rowspan="4" > Гурвантэс </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 22 </td>
+            <td> 606.4224 </td>
+            <td> 254,697.4 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 15 </td>
+            <td> 138.6721 </td>
+            <td> 237.3 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 30 </td>
+            <td> 60.7987 </td>
+            <td> 9,727.8 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 21 </td>
+            <td> 81186.3376 </td>
+            <td> 3,896,944.2 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 88 </td>
+            <td> 81992.2308 </td>
+            <td> 4,161,606.7 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2"> 4 </td>
+            <td > Даланзадгад </td>
+            <td> Уурхайн нөөц газар </td>
+            <td> 3 </td>
+            <td> 415.8725 </td>
+            <td> 19,961.9 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 3 </td>
+            <td> 415.8725 </td>
+            <td> 19,961.9 </td>
+          </tr>
+        
+          <tr>
+            <td rowspan="5"> 5 </td>
+            <td rowspan="4" > Мандал-Овоо </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 7 </td>
+            <td> 232.8771 </td>
+            <td> 97,808.4 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 4 </td>
+            <td> 10.2384 </td>
+            <td> 23.7 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 12.4701 </td>
+            <td> 1,995.2 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 13 </td>
+            <td> 7,529.9625 </td>
+            <td> 361,438.2 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 32 </td>
+            <td> 7,785.5481 </td>
+            <td> 461,265.5 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="4"> 6 </td>
+            <td rowspan="3" > Манлай </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 2 </td>
+            <td> 1.4992 </td>
+            <td> 629.7 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 1 </td>
+            <td> 3.2456 </td>
+            <td> 7.1 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 7 </td>
+            <td> 15,867.5855 </td>
+            <td> 761,644.1 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 10 </td>
+            <td> 15,872.3303 </td>
+            <td> 762,280.9 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 7 </td>
+            <td rowspan="4" > Ноён </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 10 </td>
+            <td> 125.2397 </td>
+            <td> 52,600.7 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 6 </td>
+            <td> 34.8011 </td>
+            <td> 79.2 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 9.8144 </td>
+            <td> 1,570.3 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 11 </td>
+            <td> 52,008.8236 </td>
+            <td> 2,496,423.5 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 35 </td>
+            <td> 52,178.6788 </td>
+            <td> 2,550,673.7 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="4"> 8 </td>
+            <td rowspan="3" > Номгон </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 3 </td>
+            <td> 0.536 </td>
+            <td> 225.1 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 2 </td>
+            <td> 3.2456 </td>
+            <td> 206.5 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 10 </td>
+            <td> 15,867.5855 </td>
+            <td> 1,145,778.9 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 15 </td>
+            <td> 15,872.3303 </td>
+            <td> 1,146,210.5 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 9 </td>
+            <td rowspan="4" > Ханбогд </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 2 </td>
+            <td> 0.9373 </td>
+            <td> 393.7 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 2 </td>
+            <td> 12.7005 </td>
+            <td> 35.2 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 3.9362 </td>
+            <td> 629.8 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 25 </td>
+            <td> 95,672.8849 </td>
+            <td> 4,592,298.5 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 37 </td>
+            <td> 95,690.459 </td>
+            <td> 4,593,357.2 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="3"> 10 </td>
+            <td rowspan="2" > Ханхонгор </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 1 </td>
+            <td> 0.0029 </td>
+            <td> 1.2 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 5 </td>
+            <td> 6,550.0362 </td>
+            <td> 314,401.7 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 6 </td>
+            <td> 6,550.0391 </td>
+            <td> 314,403 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2"> 11 </td>
+            <td rowspan="1" > Хүрмэн </td>
+            <td> Уурхайн нөөц газар </td>
+            <td> 8 </td>
+            <td> 6704.4679 </td>
+            <td> 321,814.5 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 8 </td>
+            <td> 6704.4679 </td>
+            <td> 321,814.5 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2"> 10 </td>
+            <td rowspan="1" > Цогт-Овоо </td>
+            <td> Уурхайн нөөц газар </td>
+            <td> 2 </td>
+            <td> 7,196.5774 </td>
+            <td> 345,435.7 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 2 </td>
+            <td> 7,196.5774 </td>
+            <td> 345,435.7 </td>
+          </tr>
+
+
+          <tr>
+            <td rowspan="5"> 13 </td>
+            <td rowspan="4" > Цогт-цэций </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 47 </td>
+            <td> 368.0523 </td>
+            <td> 154,582 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 17 </td>
+            <td> 158.3879 </td>
+            <td> 162.4 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 77 </td>
+            <td> 165.1481 </td>
+            <td> 24,431.3 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 14 </td>
+            <td> 57,983.2533 </td>
+            <td> 2,783,196.2 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Нийт </td>
+            <td> 154 </td>
+            <td> 58,674.8415 </td>
+            <td> 2,962,371.9 </td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td colspan="2"> Нийт </td>
+            <td> 421 </td>
+            <td> 433,768.2446 </td>
+            <td> 21,362,050.5 </td>
+          </tr>
+        
+        </tbody>
+  
+      </table>
+    </div>
+
   </div>
 
+  <div id="mineral_detail_info_additional" style="display: none;">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 26px;">
+            Д/д
+          </th>
+          <th>
+            Сумын нэр
+          </th>
+          <th>
+            Ашигт малтмалын тусгай зөвшөөрөлтэй талбайн тоо /Давхардсан тоогоор/
+          </th>
+          <th>
+            Талбайн хэмжээ /га/
+          </th>
+        </tr>
+      </thead>
+      <tbody class="mining_area_data_fetch" style="text-align: center;">
+   
+      </tbody>
+    </table>
+  </div>
+
+  <div id="cadastre_detail_info_additional" style="display: none;">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 26px;">
+            Д/д
+          </th>
+          <th>
+            Сумын нэр
+          </th>
+          <th>
+            Нэгж талбарын тоо
+          </th>
+          <th>
+            Талбайн хэмжээ /га/
+          </th>
+        </tr>
+      </thead>
+      <tbody class="cadastre_area_data_fetch" style="text-align: center;">
+   
+      </tbody>
+    </table>
+  </div>
+
+  <div id="zorchil_detail_info_additional" style="display: none;">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Зөрчлийн төрөл
+          </th>
+          <th>
+            Тоо хэмжээ
+          </th>
+          <th>
+            Талбайн хэмжээ /га/
+          </th>
+        </tr>
+      </thead>
+      <tbody class="zorchil_data_fetch" style="text-align: center;">
+        <tr>
+          <td> Газрын кадастрын мэдээллийн санд бүртгэгдсэн талбай ашигт малтмалын тусгай зөвшөөрлийн талбайгаас зөрүүтэй </td>
+          <td> 248 </td>
+          <td> 434088.5 </td>
+        </tr>
+        <tr>
+          <td> Газрын кадастрын мэдээллийн санд бүртгэгдсэн талбайгаас илүү газар ашиглалттай </td>
+          <td> 290 </td>
+          <td> 2316.3 </td>
+        </tr>
+        <tr>
+          <td> Ашигт малтмалын тусгай зөвшөөрлийн талбайгаас илүү газар ашиглалттай </td>
+          <td> 68 </td>
+          <td> 1415.5 </td>
+        </tr>
+        <tr>
+          <td> Газрын кадастрын мэдээллийн санд бүртгэгдсэн талбайгаас илүү газар ашиглалттай хэдий ч Ашигт малтмалын тусгай зөвшөөрлийн талбай дотроо байгаа </td>
+          <td> 258 </td>
+          <td> 1949.86 </td>
+        </tr>
+        <tr>
+          <td> Газрын кадастрын мэдээллийн санд бүртгэгдээгүй, Ашигт малтмалын тусгай зөвшөөрөлгүйгээр газар ашиглаж байгаа </td>
+          <td> 64 </td>
+          <td> 366.46 </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="mining_land_use_detail_info_additional">
+    <div class="miningLandUse_scroll">
+      <table>
+        <thead style="position: sticky; top: 0px; background-color: #23498f;">
+          <th style="width: 26px;">
+            Д/д
+          </th>
+          <th>
+            Сумын нэр
+          </th>
+          <th>
+            Газар ашиглалтын зориулалт
+          </th>
+          <th>
+            Тоо хэмжээ
+          </th>
+          <th>
+            Талбайн хэмжээ /га/
+          </th>
+        </thead>
+        <tbody style="text-align: center;">
+          <tr>
+            <td rowspan="3"> 1 </td>
+            <td rowspan="2"> Баяндалай </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 1 </td>
+            <td> 9.0712 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 2 </td>
+            <td> 0.5657 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Баяндалай нийт </td>
+            <td> 3 </td>
+            <td> 9.6369 </td>
+          </tr>
+  
+          <tr>
+            <td rowspan="4"> 2 </td>
+            <td rowspan="3"> Баян-Овоо </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 7 </td>
+            <td> 101.4938 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 4 </td>
+            <td> 24.1141 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 29.429 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Баян-Овоо нийт </td>
+            <td> 19 </td>
+            <td> 155.0369 </td>
+          </tr>
+  
+          <tr>
+            <td rowspan="4"> 3 </td>
+            <td rowspan="3"> Гурвантэс </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 30 </td>
+            <td> 4553.5903 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 15 </td>
+            <td> 194.4759 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 33 </td>
+            <td> 190.0509 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Гурвантэс нийт </td>
+            <td> 78 </td>
+            <td> 4938.1172 </td>
+          </tr>
+  
+          <tr>
+            <td rowspan="4"> 4 </td>
+            <td rowspan="3"> Мандал-Овоо </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 9 </td>
+            <td> 256.8235 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 4 </td>
+            <td> 10.9231 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 13.655 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Мандал-Овоо нийт </td>
+            <td> 21 </td>
+            <td> 281.4016 </td>
+          </tr>
+  
+          <tr>
+            <td rowspan="4"> 5 </td>
+            <td rowspan="3"> Манлай </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 2 </td>
+            <td> 1.4996 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 1 </td>
+            <td> 3.2456 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 1 </td>
+            <td> 1.6965 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Манлай нийт </td>
+            <td> 4 </td>
+            <td> 6.4417 </td>
+          </tr>
+  
+          <tr>
+            <td rowspan="4"> 6 </td>
+            <td rowspan="3"> Ноён </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 10 </td>
+            <td> 1231.5184 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 19 </td>
+            <td> 59.4065 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 13 </td>
+            <td> 36.3925 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Ноён нийт </td>
+            <td> 42 </td>
+            <td> 1327.3173 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="3"> 7 </td>
+            <td rowspan="2"> Номгон </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 5 </td>
+            <td> 1.4421 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 3 </td>
+            <td> 2.6473 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Номгон нийт </td>
+            <td> 8 </td>
+            <td> 4.0894 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="4"> 8 </td>
+            <td rowspan="3"> Ханбогд </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 30 </td>
+            <td> 3188.9564 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 8 </td>
+            <td> 297.7915 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 34 </td>
+            <td> 383.8971 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Ханбогд нийт </td>
+            <td> 72 </td>
+            <td> 3870.6449 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="4"> 9 </td>
+            <td rowspan="3"> Ханхонгор </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 9 </td>
+            <td> 1098.1306 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 6 </td>
+            <td> 60.6709 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 3 </td>
+            <td> 9.6043 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Ханхонгор нийт </td>
+            <td> 18 </td>
+            <td> 1168.4058 </td>
+          </tr>
+          
+          <tr>
+            <td rowspan="4"> 9 </td>
+            <td rowspan="3"> Цогтцэций </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 62 </td>
+            <td> 7498.8252 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 21 </td>
+            <td> 402.9318 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 110 </td>
+            <td> 537.765 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Цогтцэций нийт </td>
+            <td> 193 </td>
+            <td> 8439.522 </td>
+          </tr>
+
+
+          <tr>
+            <td></td>
+            <td colspan="2">Нийт</td>
+            <td >458</td>
+            <td >20200.6135</td>
+          </tr>
+  
+      </table>
+    </div>
+  </div>
+
+  <div id="database_register_detail_info_additional">
+    <div class="miningLandUse_scroll">
+      <table>
+        <thead style="position: sticky; top: 0px; background-color: #23498f;">
+          <th style="width: 26px;">
+            Д/д
+          </th>
+          <th>
+            Сумын нэр
+          </th>
+          <th>
+            Газар ашиглалтын зориулалт
+          </th>
+          <th>
+            Тоо хэмжээ
+          </th>
+          <th>
+            Талбайн хэмжээ /м2/
+          </th>
+        </thead>
+        <tbody style="text-align: center;">
+          <tr>
+            <td rowspan="4"> 1 </td>
+            <td rowspan="3"> Баяндалай </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 1 </td>
+            <td> 0.0123 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 1 </td>
+            <td> 0.0617 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 5 </td>
+            <td> 3486.2689 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Баяндалай нийт </td>
+            <td> 7 </td>
+            <td> 3486.3428 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 2 </td>
+            <td rowspan="4"> Баян-Овоо </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 5 </td>
+            <td> 89.6185 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 4 </td>
+            <td> 20.5157 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 7 </td>
+            <td> 19.7685 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 8 </td>
+            <td> 73222.5584 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Баян-Овоо нийт </td>
+            <td> 24 </td>
+            <td> 73352.461 </td>
+          </tr>
+  
+          <tr>
+            <td rowspan="5"> 3 </td>
+            <td rowspan="4"> Гурвантэс </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 22 </td>
+            <td> 606.4176 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 15 </td>
+            <td> 138.6721 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 30 </td>
+            <td> 60.7982 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 21 </td>
+            <td> 81179.232 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Гурвантэс нийт </td>
+            <td> 88 </td>
+            <td> 81985.1199 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2"> 4 </td>
+            <td> Даланзадгад </td>
+            <td> Уурхайн нөөц газар </td>
+            <td> 3 </td>
+            <td> 415.8725 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Даланзадгад нийт </td>
+            <td> 3 </td>
+            <td> 415.8725 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 5 </td>
+            <td rowspan="4"> Мандал-Овоо </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 7 </td>
+            <td> 233.0381 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 4 </td>
+            <td> 10.2384 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 12.4788 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 13 </td>
+            <td> 7533.4641 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Мандал-Овоо нийт </td>
+            <td> 32 </td>
+            <td> 7789.2195 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="4"> 6 </td>
+            <td rowspan="3"> Манлай </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 2 </td>
+            <td> 1.4996 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 1 </td>
+            <td> 3.2456 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 7 </td>
+            <td> 15865.2767 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Манлай нийт </td>
+            <td> 10 </td>
+            <td> 15870.0219 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 7 </td>
+            <td rowspan="4"> Ноён </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 10 </td>
+            <td> 125.4486 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 6 </td>
+            <td> 34.8011 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 9.8109 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 11 </td>
+            <td> 51996.68 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Ноён нийт </td>
+            <td> 32 </td>
+            <td> 52166.7407 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="4"> 8 </td>
+            <td rowspan="3"> Номгон </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 3 </td>
+            <td> 0.5365 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 2 </td>
+            <td> 1.2919 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 10 </td>
+            <td> 23879.8112 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Номгон нийт </td>
+            <td> 15 </td>
+            <td> 23881.6396 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 9 </td>
+            <td rowspan="4"> Ханбогд </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 2 </td>
+            <td> 0.9373 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 2 </td>
+            <td> 12.7005 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 8 </td>
+            <td> 3.9369 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 25 </td>
+            <td> 95926.6982 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Ханбогд нийт </td>
+            <td> 37 </td>
+            <td> 95944.2729 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="3"> 10 </td>
+            <td rowspan="2"> Ханхонгор </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 1 </td>
+            <td> 0.0029 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 5 </td>
+            <td> 6555.2567 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Ханхонгор нийт </td>
+            <td> 6 </td>
+            <td> 6555.2596 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2"> 11 </td>
+            <td rowspan="1"> Хүрмэн </td>
+            <td> Уурхайн нөөц газар </td>
+            <td> 8 </td>
+            <td> 6708.494 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Хүрмэн нийт </td>
+            <td> 8 </td>
+            <td> 6708.494 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="2"> 12 </td>
+            <td rowspan="1"> Цогт-Овоо </td>
+            <td> Уурхайн нөөц газар </td>
+            <td> 2 </td>
+            <td> 7202.2985 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Цогт-Овоо нийт </td>
+            <td> 2 </td>
+            <td> 7202.2985 </td>
+          </tr>
+
+          <tr>
+            <td rowspan="5"> 13 </td>
+            <td rowspan="4"> Цогт-Цэций </td>
+            <td> Ашиглалт, олборлолт явуулж буй уурхайн талбай </td>
+            <td> 47 </td>
+            <td> 574.3173 </td>
+          </tr>
+          <tr>
+            <td> Сайжруулсан шороон зам </td>
+            <td> 17 </td>
+            <td> 158.3879 </td>
+          </tr>
+          <tr>
+            <td> Уул уурхайн үйлдвэрлэлийн барилга, байгууламж </td>
+            <td> 77 </td>
+            <td> 197.7809 </td>
+          </tr>
+          <tr>
+            <td> Уурхайн нөөц газар </td>
+            <td> 13 </td>
+            <td> 58167.1426 </td>
+          </tr>
+          <tr>
+            <td colspan="2"> Цогт-Цэций нийт </td>
+            <td> 154 </td>
+            <td> 59097.6287 </td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td colspan="2">Нийт</td>
+            <td >421</td>
+            <td >434455.3716</td>
+          </tr>
+
+      </table>
+    </div>
+  </div>
   
   <div class='mapTypeSelection'>
     <img src="{% static 'image/map/google.jpg'%}" id="google" class="mapChange" alt="" />
@@ -294,7 +1387,7 @@
   </div>
 
   <script>
-    var baseMap = 'google';
+    var baseMap = 'openstreet';
     // sessionStorage.setItem("mapChange", baseMap);
   </script>
 
@@ -303,6 +1396,7 @@
   <script src="{% static 'js/action.js'%}"></script>
   <!-- <script src="{% static 'js/MainMap.js'%}" type="module"></script> -->
   <script src="{% static 'js/MainMap.js'%}" ></script>
+
 </body>
 
 </html>

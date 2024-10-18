@@ -33,7 +33,7 @@ const toggleSidebarHandler = () => {
   } else {
     // Code for expanding
     sidebar.classList.remove("isShrinked");
-     sidebar.style.height = '700px'
+     sidebar.style.height = '645px'
 
     sidebar.animate([{ width: "200px" }], {
       duration: 600,

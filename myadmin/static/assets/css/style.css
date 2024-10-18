@@ -117,8 +117,8 @@
   background: #8aaae5;
   display: flex;
   flex-direction: column;
-  height: 580px;
-  top: calc((100% - 580px) / 2);
+  height: 645px;
+  top: calc((100% - 645px) / 2);
   /* background: radial-gradient(circle, #434343 0%, rgba(3, 2, 53, 1) 29%, rgba(9, 9, 121, 1) 88%, rgba(0, 212, 255, 1) 100%); */
   background: radial-gradient(
     circle,
@@ -230,7 +230,8 @@ ul.menu li img {
 }
 #database_register_additional,
 #another_service_additional,
-#mining_land_additional {
+#mining_land_additional,
+#satellite_image_additional {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -276,6 +277,30 @@ ul.menu li img {
   padding: 10px;
 }
 
+#database_register_info_additional{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 450px;
+  height: auto;
+  background: radial-gradient(
+    circle,
+    rgba(202, 220, 252, 1) 0%,
+    rgba(138, 182, 249, 1) 0%,
+    rgba(0, 36, 107, 1) 100%
+  );
+  display: block;
+  border-radius: 8px;
+  right: 20px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px;
+  top: calc((100% - 597px) / 2);
+}
+
 #payCalc_info_additional {
   display: flex;
   flex-direction: column;
@@ -300,6 +325,63 @@ ul.menu li img {
   top: calc((100% - 750px) / 2);
 }
 
+#mineral_detail_info_additional,
+#cadastre_detail_info_additional,
+#zorchil_detail_info_additional,
+#mining_land_use_detail_info_additional,
+#database_register_detail_info_additional, 
+#new_payCalc_info_additional{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 470px;
+  /* height: 600px; */
+  background: radial-gradient(
+    circle,
+    rgba(202, 220, 252, 1) 0%,
+    rgba(138, 182, 249, 1) 0%,
+    rgba(0, 36, 107, 1) 100%
+  );
+  display: block;
+  border-radius: 8px;
+  right: 20px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px;
+  /* top: calc((100% - 750px) / 2); */
+}
+#mining_land_use_detail_info_additional, 
+#database_register_detail_info_additional{
+  width: 600px;
+  height: 650px !important;
+  top: calc((100% - 800px) / 2);
+}
+
+#new_payCalc_info_additional{
+  width: 600px;
+  height: 650px !important;
+  top: calc((100% - 800px) / 2);
+}
+
+#mineral_detail_info_additional{
+  height: 631px !important;
+  top: calc((100% - 781px) / 2);
+}
+
+#cadastre_detail_info_additional{
+  height: 571px !important;
+  top: calc((100% - 721px) / 2);
+}
+
+#zorchil_detail_info_additional{
+  height: 344px !important;
+  width: 650px;
+  top: calc((100% - 494px) / 2);
+}
+
 #zorchil_additional .form-check {
   align-items: baseline !important;
 }
@@ -309,7 +391,15 @@ ul.menu li img {
 #database_register_additional.show,
 #zorchil_additional.show,
 #mining_land_additional.show,
-#payCalc_info_additional.show {
+#payCalc_info_additional.show,
+#database_register_info_additional.show,
+#satellite_image_additional.show, 
+#mineral_detail_info_additional.show,
+#cadastre_detail_info_additional, 
+#zorchil_detail_info_additional.show,
+#mining_land_use_detail_info_additional.show, 
+#database_register_detail_info_additional.show,
+#new_payCalc_info_additional.show {
   display: block;
   opacity: 1;
   transform: scale(1);
@@ -365,10 +455,15 @@ td {
 }
 
 .customHeader {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
   font-size: 22px;
   margin-top: 10px;
+}
+
+.customBottomBorder{
+  border-bottom: 3px solid white;
+  margin-bottom: 15px;
 }
 
 /* radial-gradient(circle, rgba(3,24,38,1) 0%, rgba(3,2,53,1) 29%, rgba(9,9,121,1) 88%, rgba(0,212,255,1) 100%) */
@@ -376,5 +471,10 @@ td {
 
 .payCal_scroll{
   overflow-y: scroll;
-  height: 530px;
+  height: 650px;
+}
+
+.miningLandUse_scroll{
+  overflow-y: scroll;
+  height: 650px;
 }
