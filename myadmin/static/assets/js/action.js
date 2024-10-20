@@ -189,6 +189,38 @@ $(document).ready(function () {
       display: 'none',
     })
 
+    $("#new_payCalc_info_additional").removeClass("show");
+    $("#new_payCalc_info_additional").css({
+      display: 'none',
+    })
+
+    $("#mineral_detail_info_additional").removeClass("show");
+    $("#mineral_detail_info_additional").css({
+      display: 'none',
+    })
+
+
+    $("#cadastre_detail_info_additional").removeClass("show");
+    $("#cadastre_detail_info_additional").css({
+      display: 'none',
+    })
+
+    $("#zorchil_detail_info_additional").removeClass("show");
+    $("#zorchil_detail_info_additional").css({
+      display: 'none',
+    })
+
+
+    $("#mining_land_use_detail_info_additional").removeClass("show");
+    $("#mining_land_use_detail_info_additional").css({
+      display: 'none',
+    })
+
+    $("#database_register_detail_info_additional").removeClass("show");
+    $("#database_register_detail_info_additional").css({
+      display: 'none',
+    })    
+
     $("#database_register_info_additional").removeClass("show");
     $("#database_register_info_additional").css({
       display: 'none',

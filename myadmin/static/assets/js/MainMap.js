@@ -115,7 +115,7 @@ window.onload = function () {
           ${value.count}
         </td>
         <td>
-         ${value.area}
+         ${numberWithCommas(value.area)}
         </td>
       </tr>
     `)
@@ -132,7 +132,7 @@ window.onload = function () {
         ${miningAreaData[0].sum.sumCount}
       </td>
       <td>
-        ${miningAreaData[0].sum.sumArea}
+        ${numberWithCommas(miningAreaData[0].sum.sumArea)}
       </td>
     </tr>
   `)
@@ -237,7 +237,7 @@ window.onload = function () {
           ${value.count}
         </td>
         <td>
-         ${value.area}
+         ${numberWithCommas(value.area)}
         </td>
       </tr>
     `)
@@ -254,7 +254,7 @@ window.onload = function () {
         ${miningAreaData[0].sum.sumCount}
       </td>
       <td>
-        ${miningAreaData[0].sum.sumArea}
+        ${numberWithCommas(miningAreaData[0].sum.sumArea)}
       </td>
     </tr>
   `)
@@ -333,6 +333,7 @@ window.onload = function () {
   var cadastreArea = false;
   var buildingArea = false;
   var satellite_30 = false;
+  var satellite_10 = false;
 
   var parcelBool = false;
   // var parcel = new ol.layer.Tile({
@@ -839,7 +840,7 @@ window.onload = function () {
     MiningLandLayer(mining_land_array.toString());
   });
 
-  function COLOR_5_LAYER() {
+  function SATELLITE_30_LAYER() {
     if (satellite_30) {
       const layerToRemove = map
         .getLayers()
@@ -850,7 +851,7 @@ window.onload = function () {
         satellite_30 = false;
       }
     } else {
-      const COLOR_5_10_LAYER_VECTOR = [
+      const SATELLITE_30_LAYER_VECTOR = [
         new ol.layer.Tile({
           source: new ol.source.OSM(),
         }),
@@ -862,7 +863,7 @@ window.onload = function () {
         }),
       ];
 
-      COLOR_5_10_LAYER_VECTOR.forEach((layer, index) => {
+      SATELLITE_30_LAYER_VECTOR.forEach((layer, index) => {
         layer.setZIndex(10 + index); // Increment zIndex for each layer if needed
         map.addLayer(layer);
       });
@@ -870,8 +871,44 @@ window.onload = function () {
     }
   }
 
+  function SATELLITE_10_LAYER() {
+    if (satellite_10) {
+      const layerToRemove = map
+        .getLayers()
+        .getArray()
+        .find((layer) => layer.get("name") === "IMAGE_10_SATELLITE");
+      if (layerToRemove) {
+        map.removeLayer(layerToRemove);
+        satellite_10 = false;
+      }
+    } else {
+      const SATELLITE_10_LAYER_VECTOR = [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(),
+        }),
+        new ol.layer.Image({
+          name: "IMAGE_10_SATELLITE",
+          source: new ol.source.ImageWMS({
+            url: "https://geoserver.erkhet-innovation.com/geoserver/satellite/wms?service=WMS&version=1.1.0&request=GetMap&layers=satellite:satellite 5-10m res&bbox=100.978,42.76686738,106.992986498,44.4516&width=768&height=330&srs=EPSG:4326&styles=&format=application/openlayers",
+          }),
+        }),
+      ];
+
+      SATELLITE_10_LAYER_VECTOR.forEach((layer, index) => {
+        layer.setZIndex(10 + index); // Increment zIndex for each layer if needed
+        map.addLayer(layer);
+      });
+      satellite_10 = true;
+    }
+  }
+
   $(document).on("click", ".satellite_image_30", function (e) {
-    COLOR_5_LAYER();
+    SATELLITE_30_LAYER();
+  });
+
+
+  $(document).on("click", ".satellite_image_10", function (e) {
+    SATELLITE_10_LAYER();
   });
 
   function tulburTable(au2) {
