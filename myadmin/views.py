@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, get_user 
 from django.contrib import messages
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
+from users.models import ReportViolation
 # from django.core.urlresolvers import reverse_lazy
 
 
@@ -40,10 +41,10 @@ def accounts(request):
     context={}
     userinfo=get_user(request)
     if userinfo.is_superuser:
-        userList=User.objects.all()
+        userList=User.objects.all().order_by('id')
         context['userList']=userList
     else:
-        context['userList']= userinfo
+        context['userList']= [userinfo]
     return render(request,'accounts.html', context)
 
 @login_required(login_url='/myadmin/login')
@@ -104,14 +105,74 @@ def au2TulburDashboard(request,au2):
 @login_required(login_url='/myadmin/login')
 def createAccount(request):
     if request.method == 'POST':
-        user= User()
+        # user= User()
+        isSuper=False
+        if(request.POST.get('admin') != None):
+            isSuper=True
+        
         dm = User.objects.create_user(username=request.POST.get('username'), email=request.POST.get('email'), password=request.POST.get('password'))
         dm.first_name = request.POST.get('first_name')
         dm.last_name = request.POST.get('last_name')
-        dm.is_superuser= False
+        dm.is_superuser= isSuper
         dm.save()
-        # print(request.POST)
-        # form_class = forms.UserCreateForm
-        # success_url = reverse_lazy('login')
-        # temlate_name = 'account/modal/create_modal.html'
-        return HttpResponse("ok")
+        return redirect('accounts')
+
+@login_required(login_url='/myadmin/login')
+def getAccountView(request, id):
+    context={}
+    user=User.objects.get(id=id)
+    userinfo=get_user(request)
+
+    context['user']=user
+    context['myRole']=userinfo.is_superuser
+    context['myId']=userinfo.id
+    return render(request,'account/updateForm.html', context)
+
+@login_required(login_url='/myadmin/login')
+def updateAccount(request,id):
+    if request.method == 'POST':
+        # user= User()
+        isSuper=False
+        if(request.POST.get('admin') != None):
+            isSuper=True
+        
+        dm = User.objects.get(id=id)
+
+        dm.first_name = request.POST.get('first_name')
+        dm.last_name = request.POST.get('last_name')
+        dm.email = request.POST.get('email')
+        # dm.username = request.POST.get('username')
+        if request.POST.get('passwordUpdate'):
+            dm.set_password = request.POST.get('passwordUpdate')
+        dm.is_superuser= isSuper
+        dm.save()
+        return redirect('accounts')
+
+@csrf_exempt
+@login_required(login_url='/myadmin/login')
+def checkAccountPwd(request,id):
+    if request.method == 'POST':
+        usr = User.objects.get(id=id)
+        print('end', usr)
+        print(usr.check_password(request.POST.get('pwd')))
+        if usr.check_password(request.POST.get('pwd')):
+            return JsonResponse({"status":"true", "data": "Зөв нууц үг"}, status=200)
+
+    return JsonResponse({"status":"false", "data": "Нууц үг тохирсонгүй"}, status=200)
+    
+@login_required(login_url='/myadmin/login')
+def deleteAccount(request, id):
+    if request.method == 'GET':
+        usr = User.objects.get(id=id)
+        usr.delete()
+        return JsonResponse({"status":"true", "data": "Амжилттай устгалаа"}, status=200)
+    return JsonResponse({"status":"false", "data": "Устгаж чадсангүй"}, status=200)
+
+@login_required(login_url='/myadmin/login')
+def reports(request):
+    print('end')
+    context={}
+    report= ReportViolation.objects.all()
+    
+    context['reportList']=report
+    return render(request,'report.html', context)

@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -6,17 +6,22 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.tokens import RefreshToken, OutstandingToken
 from rest_framework.exceptions import NotAuthenticated
+from .models import BlacklistedToken, ReportViolation
+from .authentication import CustomJWTAuthentication
+from rest_framework import status
+from .serializer import ReportViolationSerializer
 
 
 
 class UserAPI(APIView):
-    authentication_classes = [JWTAuthentication]
+    # authentication_classes = [JWTAuthentication]
+    authentication_classes = [CustomJWTAuthentication]
     permission_classes = [AllowAny]
 
     
     def get(self, request):
         user = request.user
-        if not user.is_authenticated:
+        if not request.user.is_authenticated:
             raise NotAuthenticated()
         return Response({
             "username": user.username,
@@ -33,7 +38,7 @@ class UserAPI(APIView):
         if (username and password):
             if User.objects.filter(username=username).exists():
                 return Response({
-                    "error": "A user with that username exists",
+                    "error": "Ийм хэрэглэгчийн нэртэй хэрэглэгч байна",
                 }, status=401)
             user = User.objects.create(username=username, password=password)
             refresh = RefreshToken.for_user(user)     
@@ -42,8 +47,8 @@ class UserAPI(APIView):
                 'access': str(refresh.access_token),
             }, status=201)
         
-        return Response({
-            "error": "Both username and password must be provided."
+        return Response({ "status": "false",
+            "msg": "Хэрэглэгчийн нэр болон нууц үг 2ланг нь өгөх ёстой"
         }, status=401)
     
 
@@ -52,17 +57,16 @@ class UserAPI(APIView):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def logout(request):
-    refresh_token = request.data.get('refresh_token')
+    auth_header = request.headers.get('Authorization')
+    if auth_header and auth_header.startswith('Bearer '):
+        access_token = auth_header.split(' ')[1]
+
+        # Blacklist the token
+        BlacklistedToken.objects.create(user=request.user, token=access_token)
+
+        return Response({{"status":"true" ,"msg": "Амжилттай системээс гарлаа"}}, status=200)
     
-    if refresh_token:
-        try:
-            token = RefreshToken(refresh_token)
-            token.blacklist()
-            return Response({'message': 'Successfully logged out.'}, status=200)
-        except Exception as e:
-            return Response({'error': 'Invalid token.'}, status=400)
-    else:
-        return Response({'error': 'Refresh token is required.'}, status=400)
+    return Response({"status": "false", "msg": "Токен байхгүй байна"}, status=400)
 
 
 @api_view(['POST'])
@@ -74,3 +78,14 @@ def logout_all(request):
     for token in tokens:
         token.blacklist()
     return Response({'message': 'Successfully logged out from all sessions.'}, status=200)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def report_upload_view(request):
+    if request.method == 'POST':
+        serializer = ReportViolationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

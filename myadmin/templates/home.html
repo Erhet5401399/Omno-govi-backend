@@ -1,3 +1,4 @@
+{% load static %}
 <html>
 
 <head>
@@ -10,6 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'thirdpart/jquery-confirm/jquery-confirm.min.css' %}">
 
     {%block header%}
 
@@ -32,15 +34,17 @@
 
     // <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    </script>
+</script>
 
+<script src="{% static 'thirdpart/jquery-confirm/jquery-confirm.min.js' %}"></script>
     <nav>
         <div class="nav-wrapper">
             <a href="#!" class="brand-logo" style="margin-left: 15px;">Өмнө говь / {{user}} /</a>
 
             <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'dashboard' %}"><i class="material-icons left">dashboard</i>Хяналтын самбар</a></li>
-                <li><a href="sass.html"><i class="material-icons left">people_outline</i>Хэрэглэгчийн удирдлага</a></li>
+                <li><a href="/myadmin/accounts"><i class="material-icons left">people_outline</i>Хэрэглэгчийн удирдлага</a></li>
+                <li><a href="/myadmin/report"><i class="material-icons left">report</i>Иргэдээс ирүүлсэн зөрчил</a></li>
 
                 <li><a href="{% url 'admin_logout' %}"><i class="material-icons right">exit_to_app</i>Системээс
                         гарах</a></li>

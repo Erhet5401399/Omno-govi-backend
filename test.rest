@@ -1,3 +1,6 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI5NDMzODIxLCJpYXQiOjE3Mjk0MzAyMjEsImp0aSI6IjgwOWY4NzU3MWZlMzQ3NWI5ZWZlMTkzMDVlOWVmMjZjIiwidXNlcl9pZCI6MX0.4LchpJHBi7t_38hV5SoneVSF-7d9mwrmP1Fky4AIINA
+
+
 POST http://127.0.0.1:8000/api/token/
 Content-Type: application/json
 
@@ -7,7 +10,7 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/api/user
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2NDk3OTU5LCJpYXQiOjE3MjY0OTQzNTksImp0aSI6IjI2Y2U1ODUwN2NjZTQ2ZWQ5MTM2NDY2Zjg4ZjllYWRkIiwidXNlcl9pZCI6MX0.qfQX57oW0OWYrnNHEEZL9UMvnr1Sp5yN0oT5L8FTJBQ
+Authorization: Bearer {{token}}
 
 {}
 
@@ -23,7 +26,7 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/api/tulbur/274
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2NDk2Mjc0LCJpYXQiOjE3MjY0OTI2NzQsImp0aSI6IjZhOWYwM2Y5Yjk5MjRiOWY5MGYzMWVmOThmZmUwMzZhIiwidXNlcl9pZCI6MX0.x9lx4aYFsoSXutpYUYK-XmPpmnuQMtiZPsfRbCAZDmI
+Authorization: Bearer {{token}}
 
 {}
 
@@ -32,9 +35,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2NDk4ODExLCJpYXQiOjE3MjY0OTUyMTEsImp0aSI6IjYwY2ViOTZiMDY5NDQzMGVhMDU0YThhNjg4MWVkMDVkIiwidXNlcl9pZCI6MX0.68DteKHKFjez0OVRcr2W2Rj6PGacnut_t6dM297D7ik
+Authorization: Bearer {{token}}
 
-{
-    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNjU4MTYxMSwiaWF0IjoxNzI2NDk1MjExLCJqdGkiOiI5MTIyNzI3ZmMzYTA0YWQ5YWQ0YjRhMThiY2MzZWE2OSIsInVzZXJfaWQiOjF9.-E7fAROKKk9RaDC7x4R5kqcYg9qbmW2G_fFHdYGpOWI"
-}
+# {
+#     "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcyNjU4MTYxMSwiaWF0IjoxNzI2NDk1MjExLCJqdGkiOiI5MTIyNzI3ZmMzYTA0YWQ5YWQ0YjRhMThiY2MzZWE2OSIsInVzZXJfaWQiOjF9.-E7fAROKKk9RaDC7x4R5kqcYg9qbmW2G_fFHdYGpOWI"
+# }
 

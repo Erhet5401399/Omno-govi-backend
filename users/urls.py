@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from .api import UserAPI, logout, logout_all
+from .api import UserAPI, logout, logout_all, report_upload_view
 
 
 
@@ -11,4 +11,6 @@ urlpatterns = [
     path('api/user', UserAPI.as_view()),
     path('api/logout', logout),
     path('api/logout-all', logout_all),
+    path('api/report', report_upload_view, name="upload-report"),
+    path('media/upload/', report_upload_view, name='upload_image')
 ]

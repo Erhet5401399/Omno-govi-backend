@@ -1,0 +1,114 @@
+<form action="{% url 'updateAccount' id=user.id %}" id="updateUser" method="post">
+    <input type="hidden" id="custId" name="custId" value="{{user.id}}">
+    {% csrf_token %}
+    <div class="row">
+      <div class="input-field col s6">
+        <input placeholder="Овог" id="first_name" name="first_name" type="text" class="validate" value="{{user.first_name}}">
+        <label for="first_name" class="active">Овог</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="last_name" name="last_name" type="text" class="validate" value="{{user.last_name}}">
+        <label for="last_name" class="active">Нэр</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input placeholder="Нэвтрэх нэр" id="username" name="username" type="text" class="validate" value="{{user.username}}" disabled>
+        <label for="username" class="active">Нэвтрэх нэр</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="email" name="email" type="email" class="validate" value="{{user.email}}">
+        <label for="email" class="active">Емайл хаяг</label>
+      </div>
+    </div>
+    {% if not myRole %}
+    <div class="row">
+      <div class="input-field col s12">
+      <input id="current_password" type="password" class="validate">
+      <label for="current_password">Одоогийн нууц үг</label>
+      </div>
+    </div>
+    {% endif %}
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="passwordUpdate" name="passwordUpdate" type="password" class="validate">
+        <label for="password">Шинэ нууц үг</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="passwordUpdate1" name="passwordUpdate1" type="password" class="validate">
+        <label for="password1">Шинэ нууц үг давтан оруулна уу</label>
+      </div>
+    {% if myRole%}
+      <div class="input-field col s6" style="margin-bottom: 2rem;">
+        <label>
+          <input type="checkbox" class="filled-in" name="admin" {{user.is_superuser|yesno:"checked,"}}/>
+          <span>Хэрэглэгч удирдах эсэх</span>
+        </label>
+      </div>
+    {% endif %}
+    </div>
+    <button class="btn" type="submit"> Засварлах</button>
+    <button class="btn blue lighten-1 modal-close" type="reset"> Болих</button>
+    {% if myId != user.id%}
+    <button class="btn red accent-1 modal-close right" onclick="deleteAccount('{{user.id}}')" type="button"> Устгах</button>
+    {% endif %}
+  </form>
+
+
+  <script>
+    $("#updateUser").on('submit',checkpwd)
+    
+    function checkpwd(e){
+        var pwd=$("#passwordUpdate").val();
+        var pwd1=$("#passwordUpdate1").val();
+        var crtpwd=$("#current_password").val();
+        var id=$("#custId").val();
+        if(pwd != pwd1)
+        {
+            e.preventDefault();
+            alert("Дахин оруулсан нууц үг өмнөх нууц үгтэй тохирохгүй байна")
+            return;
+        }
+        if(crtpwd && pwd && pwd1)
+        {
+            $.post("/myadmin/check/password/"+id, {pwd: crtpwd}).then(data=>{
+                if(data.status == "false")
+                {
+                    e.preventDefault();
+                    alert('Одоогийн нууц үг буруу байна');   
+                    return;
+                }
+            }).catch(e=>console.log(e))
+        }
+
+        // e.submit();
+    }
+
+    function deleteAccount(id)
+    {
+        // $('modal').modal({show:false});
+        $.confirm({
+            closeIcon: true,
+            title: '<p stype="color:red">Анхаар устгасан тохиолдолд дахиж сэргэхгүй!!!</p>',
+            content: '<b>{{user.username}}</b>-ыг устгахдаа итгэлтэй байна уу',
+            buttons: {
+                confirm: {
+                    text: 'Тийм',
+                    btnClass: 'btn red accent-1',
+                    action: function () {
+                        // $.alert('Confirmed!');
+                        $.get("delete/account/"+id).then(e=>{
+                            window.location.reload();
+                        });
+                    }
+                },
+                cancel: {
+                    text: 'Үгүй',
+                    action: function () {
+                    }
+                }
+            },
+            theme: 'material',
+        });
+    }
+  </script>
