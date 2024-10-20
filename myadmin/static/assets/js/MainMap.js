@@ -332,8 +332,9 @@ window.onload = function () {
   var miningLicense = false;
   var cadastreArea = false;
   var buildingArea = false;
-  var satellite_30 = false;
+  var satellite_0_5 = false;
   var satellite_10 = false;
+  var satellite_30 = false;
 
   var parcelBool = false;
   // var parcel = new ol.layer.Tile({
@@ -840,34 +841,34 @@ window.onload = function () {
     MiningLandLayer(mining_land_array.toString());
   });
 
-  function SATELLITE_30_LAYER() {
-    if (satellite_30) {
+  function SATELLITE_0_5_LAYER() {
+    if (satellite_0_5) {
       const layerToRemove = map
         .getLayers()
         .getArray()
-        .find((layer) => layer.get("name") === "IMAGE_30_SATELLITE");
+        .find((layer) => layer.get("name") === "IMAGE_0_5_SATELLITE");
       if (layerToRemove) {
         map.removeLayer(layerToRemove);
-        satellite_30 = false;
+        satellite_0_5 = false;
       }
     } else {
-      const SATELLITE_30_LAYER_VECTOR = [
+      const SATELLITE_0_5_LAYER_VECTOR = [
         new ol.layer.Tile({
           source: new ol.source.OSM(),
         }),
         new ol.layer.Image({
-          name: "IMAGE_30_SATELLITE",
+          name: "IMAGE_0_5_SATELLITE",
           source: new ol.source.ImageWMS({
             url: "https://geoserver.erkhet-innovation.com/geoserver/satellite/wms?service=WMS&version=1.1.0&request=GetMap&layers=satellite:omno-govi-layer&bbox=101.051740828,42.854855914,106.928090371,44.386689286&width=768&height=330&srs=EPSG:4326&styles=&format=application/openlayers",
           }),
         }),
       ];
 
-      SATELLITE_30_LAYER_VECTOR.forEach((layer, index) => {
+      SATELLITE_0_5_LAYER_VECTOR.forEach((layer, index) => {
         layer.setZIndex(10 + index); // Increment zIndex for each layer if needed
         map.addLayer(layer);
       });
-      satellite_30 = true;
+      satellite_0_5 = true;
     }
   }
 
@@ -902,13 +903,48 @@ window.onload = function () {
     }
   }
 
-  $(document).on("click", ".satellite_image_30", function (e) {
-    SATELLITE_30_LAYER();
+  function SATELLITE_30_LAYER() {
+    if (satellite_30) {
+      const layerToRemove = map
+        .getLayers()
+        .getArray()
+        .find((layer) => layer.get("name") === "IMAGE_30_SATELLITE");
+      if (layerToRemove) {
+        map.removeLayer(layerToRemove);
+        satellite_30 = false;
+      }
+    } else {
+      const SATELLITE_30_LAYER_VECTOR = [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(),
+        }),
+        new ol.layer.Image({
+          name: "IMAGE_30_SATELLITE",
+          source: new ol.source.ImageWMS({
+            url: "https://geoserver.erkhet-innovation.com/geoserver/satellite/wms?service=WMS&version=1.1.0&request=GetMap&layers=satellite:10-30m mosiac&bbox=100.796384811,42.841455366,107.059925615,44.454124008&width=768&height=330&srs=EPSG:4326&styles=&format=application/openlayers",
+          }),
+        }),
+      ];
+
+      SATELLITE_30_LAYER_VECTOR.forEach((layer, index) => {
+        layer.setZIndex(10 + index); // Increment zIndex for each layer if needed
+        map.addLayer(layer);
+      });
+      satellite_30 = true;
+    }
+  }
+
+  $(document).on("click", ".satellite_image_0_5", function (e) {
+    SATELLITE_0_5_LAYER();
   });
 
 
   $(document).on("click", ".satellite_image_10", function (e) {
     SATELLITE_10_LAYER();
+  });
+
+  $(document).on("click", ".satellite_image_30", function (e) {
+    SATELLITE_30_LAYER();
   });
 
   function tulburTable(au2) {
